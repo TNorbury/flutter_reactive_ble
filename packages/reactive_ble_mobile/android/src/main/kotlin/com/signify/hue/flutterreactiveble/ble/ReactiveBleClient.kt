@@ -56,6 +56,11 @@ open class ReactiveBleClient(private val context: Context) : BleClient {
         rxBleClient = RxBleClient.create(context)
     }
 
+
+    fun currentConnections() : List<String> {
+        return activeConnections.map { entry -> entry.key  };
+    }
+
     /*yes spread operator is not performant but after kotlin v1.60 it is less bad and it is also the
     recommended way to call varargs in java https://kotlinlang.org/docs/reference/java-interop.html#java-varargs
     */
