@@ -111,6 +111,13 @@ final class Central {
     }
 
     var state: CBManagerState { return centralManager.state }
+    
+    
+    func getConnectedDevices() -> [String] {
+        centralManager.retrieveConnectedPeripherals(withServices: []).map { peripheral in
+            return peripheral.identifier.uuidString;
+        }
+    }
 
     func scanForDevices(with services: [ServiceID]?) {
         isScanning = true

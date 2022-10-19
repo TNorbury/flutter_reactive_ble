@@ -16,6 +16,7 @@ public class SwiftReactiveBlePlugin: NSObject, FlutterPlugin {
             .setStreamHandler(plugin.connectedDeviceStreamHandler)
         FlutterEventChannel(name: "flutter_reactive_ble_char_update", binaryMessenger: registrar.messenger())
             .setStreamHandler(plugin.characteristicValueUpdateStreamHandler)
+        registrar.publish(plugin);
     }
 
     var statusStreamHandler: StreamHandler<PluginController> {
@@ -145,5 +146,9 @@ public class SwiftReactiveBlePlugin: NSObject, FlutterPlugin {
 
     public func handle(_ call: FlutterMethodCall, result completion: @escaping FlutterResult) {
         methodHandler.handle(in: context, call, completion: completion)
+    }
+    
+    public func getConnectedDevices() -> [String] {
+       return context.bleTest();
     }
 }

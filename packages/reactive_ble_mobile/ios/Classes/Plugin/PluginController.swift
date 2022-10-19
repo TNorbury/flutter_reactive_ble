@@ -558,6 +558,12 @@ final class PluginController {
             completion(.failure(makeFlutterError(error: error)))
         }
     }
+    
+    func bleTest() -> [String] {
+        let devices = (central?.getConnectedDevices())!;
+        return devices;
+        
+    }
 
     // takes an error and converts it into a Flutter error
     private func makeFlutterError(error: Error) -> FlutterError {
